@@ -17,7 +17,7 @@
             <textarea placeholder="Write your tweet here" name="tweet" v-model="tweet" rows="3" class="w-100 br2 ba b--black-10 pa2"></textarea>
             <div class="mt3 flex justify-end">
                 <div class="flex items-center">
-                    <span class="mr3 black-70">{{charactersRemaining}}</span>
+                    <span class="mr3 black-70" v-bind:class="{ 'light-red': underTwentyMark, 'dark-red': underTenMark }">{{ charactersRemaining }}</span>
                     <button :disabled="tweetIsOutOfRange" class="button-reset bg-blue bn white f6 fw5 pv2 ph3 br2 dim">Tweet</button>
                 </div>
             </div>
