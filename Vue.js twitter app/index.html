@@ -10,21 +10,36 @@
 
 <body class="flex items-center justify-center vh-100">
     <div class="w-75 center ba b--black-10" id="twitterVue">
-        <div class="pv2 tc bb b--black-10">
-            <h1 class="ma0 f5 normal">Compose New Tweet</h1>
-        </div>
-        <div class="bg-near-white pa3">
-            <textarea placeholder="Write your tweet here" name="tweet" v-model="tweet" rows="3" class="w-100 br2 ba b--black-10 pa2"></textarea>
-            <div class="mt3 flex justify-end">
-                <div class="flex items-center">
-                    <span class="mr3 black-70" v-bind:class="{ 'light-red': underTwentyMark, 'dark-red': underTenMark }">{{ charactersRemaining }}</span>
-                    <button :disabled="tweetIsOutOfRange" class="button-reset bg-blue bn white f6 fw5 pv2 ph3 br2 dim">Tweet</button>
+        <div class="w-75 center ba b--black-10" id="twitterVue">
+            <div class="pv2 tc bb b--black-10">
+                <h1 class="ma0 f5 normal">Compose New Tweet</h1>
+            </div>
+            <div class="bg-near-white pa3">
+                <textarea placeholder="Write your tweet here" name="tweet" v-model="tweet" rows="3" class="w-100 br2 ba b--black-10 pa2"></textarea>
+                <div v-if="photoHasBeenUploaded" class="bg-black-10 pa2 flex">
+                    <figure class="ma0 relative flex items-center justify-center">
+                        <button @click="removePhoto" class="button-reset pointer dim bn bg-black h2 w2 br-100 white flex items-center justify-center absolute absolute--fill-l center">
+            <i class="material-icons f5">close</i>
+          </button>
+                        <img v-bind:src="photo" class="h3 w3" alt="Uploaded photo">
+                    </figure>
+                </div>
+                <input @change="handlePhotoUpload" ref="photoUpload" type="file" class="hide">
+                <div class="mt3 flex justify-between">
+                    <div>
+                        <button @click="triggerFileUpload" class="button-reset flex items-center br2 bn bg-transparent blue hover-bg-black-10 pointer">
+            <i class="material-icons f3">photo_camera</i>
+          </button>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr3 black-70" v-bind:class="{ 'dark-red': underTwentyMark, 'light-red': underTenMark }">{{ charactersRemaining }}</span>
+                        <button :disabled="tweetIsOutOfRange" class="button-reset bg-blue bn white f6 fw5 pv2 ph3 br2 dim">Tweet</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="js/vue.min.js"></script>
-    <script src="js/scripts.js"></script>
+        <script src="js/vue.min.js"></script>
+        <script src="js/scripts.js"></script>
 </body>
 
 </html>
